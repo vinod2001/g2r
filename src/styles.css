@@ -1,0 +1,44 @@
+body {
+  background-color: '#adc2d9';
+  margin: '0 auto';
+}
+html {
+  height: '100%';
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border: '1px solid #ccc';
+}
+
+.fileUploader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.fileUploader h4 {
+  text-transform: uppercase;
+  text-align: center;
+}
+.fileList {
+  display: flex;
+  margin: 10px 0;
+}
+.fileIcon {
+  width: 31px;
+  height: 38px;
+}
+.paper {
+  height: 655px;
+  position: relative;
+  overflow: hidden;
+  padding-bottom:10px;
+}
