@@ -128,7 +128,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const [value, setValue] = React.useState(3);
+  const [value, setValue] = React.useState(1);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -340,7 +340,7 @@ export default function MiniDrawer() {
               aria-label="full width tabs example"
             >
               <Tab label="Layout 1" sx={{ borderRight: "1px solid #5b7fa6" }} />
-              <Tab label="Layout 2" sx={{ borderRight: "1px solid #5b7fa6" }} />
+              <Tab label="Project Portfolio 2" sx={{ borderRight: "1px solid #5b7fa6" }} />
               <Tab label="Layout 3" sx={{ borderRight: "1px solid #5b7fa6" }} />
               <Tab label="Layout 4" />
             </Tabs>

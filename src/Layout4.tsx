@@ -171,7 +171,22 @@ export const Layout4 = () => {
             <img src={apptioLogo} style={{ width: '10%', height: '10%' }} />
           </Box>
         </Grid>
-        <Grid item xs={12} sm={12} md={6}> 
+        <Grid item xs={12} sm={12} md={12}>
+          <Paper className={clsx(classes.paper, 'paper')}>
+            <Groups
+              tableHeader={'Table 3'}
+              group={'tab'}
+              filter={true}
+              slicers={true}
+              layout={{ type: 'layout4', withoutTab: 100 }}
+              id={3}
+              setSlicers={setSlicers}
+              groupStructure={2}
+              rowType="full"
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={12} md={6}>
           <Paper className={clsx(classes.paper, 'paper')}>
             <Groups
               tableHeader={'Group 1'}
@@ -198,19 +213,7 @@ export const Layout4 = () => {
             />
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={12} md={12}>
-          <Paper className={clsx(classes.paper, 'paper')}>
-            <Groups
-              tableHeader={'Table 3'}
-              group={'tab'}
-              filter={true}
-              slicers={true}
-              layout={{ type: 'layout4', withoutTab: 100 }}
-              id={3}
-              setSlicers={setSlicers}
-            />
-          </Paper>
-        </Grid>
+        
       </Grid>
     </Box>
   )

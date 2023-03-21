@@ -67,6 +67,8 @@ type Props = {
   setNewFilterModel: (arg: any) => void;
   id: number;
   newFilterModel: {};
+  groupStructure?:number;
+  rowType?:string;
 };
 export const TabComponent = ({
   filter,
@@ -79,6 +81,8 @@ export const TabComponent = ({
   setNewFilterModel,
   setSlicers,
   id,
+  groupStructure,
+  rowType,
 }: Props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -139,6 +143,8 @@ export const TabComponent = ({
             theme="ag-theme-alpine"
             group={group}
             layout={layout}
+            groupStructure={groupStructure}
+            rowType={rowType}
           />
         </Box>
         // </Paper>

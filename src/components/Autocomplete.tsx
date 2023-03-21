@@ -193,7 +193,13 @@ export const AutocompleteComponent = ({
             return option.field
           }}
           defaultValue={lists[0]}
-          renderInput={(params) => <TextField {...params} label={nameSlicer} />}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={nameSlicer}
+              style={{ backgroundColor: 'white' }}
+            />
+          )}
           size="small"
           onChange={handleChange}
         />

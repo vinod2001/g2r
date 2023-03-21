@@ -1,19 +1,19 @@
-import "./styles.css";
-import React, { useState, KeyboardEvent, MouseEvent } from "react";
-import { DisplayGridFull } from "./agGrid/AgGrid";
-import { DisplayGrid } from "./agGrid/AgGrid copy";
-import { DisplayGridClient } from "./agGrid/AgGrid copy 2";
-import { DisplayDynamicHeader } from "./agGrid/AgGridDynamic";
-import Box from "@mui/material/Box";
+import './styles.css'
+import React, { useState, KeyboardEvent, MouseEvent } from 'react'
+import { DisplayGridFull } from './agGrid/AgGrid'
+import { DisplayGrid } from './agGrid/AgGrid copy'
+import { DisplayGridClient } from './agGrid/AgGrid copy 2'
+import { DisplayDynamicHeader } from './agGrid/AgGridDynamic'
+import Box from '@mui/material/Box'
 // import Grid from '@mui/material/Grid'
-import { AutocompleteComponent } from "./components/Autocomplete";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import clsx from "clsx";
-import { useDropzone } from "react-dropzone";
-import Button from "@mui/material/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AutocompleteComponent } from './components/Autocomplete'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import clsx from 'clsx'
+import { useDropzone } from 'react-dropzone'
+import Button from '@mui/material/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faFileExcel,
   faFilter,
@@ -24,79 +24,86 @@ import {
   faDatabase,
   faLinesLeaning,
   faShoePrints,
-} from "@fortawesome/free-solid-svg-icons";
-import { Groups } from "./components/Groups";
+} from '@fortawesome/free-solid-svg-icons'
+import { Groups } from './components/Groups'
+import { KpiGlobal } from './components/KpiGlobal'
+import { SlicersGroup } from './components/SlicersGroup'
 
-type Anchor = "top" | "left" | "bottom" | "right";
+type Anchor = 'top' | 'left' | 'bottom' | 'right'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: "#adc2d9",
-    padding: "10px",
+    backgroundColor: '#adc2d9',
+    padding: '10px',
   },
   paper: {
-    padding: "10px",
+    padding: '10px',
     color: theme.palette.text.secondary,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   pad: {
-    padding: "10px",
+    padding: '10px',
   },
-  menuIconsize: { height: "20px", width: "20px" },
-  subMenuBorder: { borderRight: "1px solid #ccc" },
+  menuIconsize: { height: '20px', width: '20px' },
+  subMenuBorder: { borderRight: '1px solid #ccc' },
   mar: {
-    marginTop: "10px",
+    marginTop: '10px',
   },
   fileUploader: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    background: "#fff",
-    borderRadius: "20px",
-    padding: "20px",
-    width: "100%",
-    boxSizing: "border-box",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    background: '#fff',
+    borderRadius: '20px',
+    padding: '20px',
+    width: '100%',
+    boxSizing: 'border-box',
   },
   h4: {
-    textTransform: "uppercase",
-    textAlign: "center",
+    textTransform: 'uppercase',
+    textAlign: 'center',
   },
   dropzone: {
-    height: "168px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    border: "2px dashed #d1ddf8",
-    borderRadius: "20px",
-    cursor: "pointer",
-    padding: "15px",
+    height: '168px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: '2px dashed #d1ddf8',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    padding: '15px',
   },
-}));
+}))
 
 const menuLists = [
-  { name: "Open In Excel", icon: faFileExcel },
-  { name: "Export to PDF", icon: faFilePdf },
-  { name: "Show API URL", icon: faFileCode },
-  { name: "Update Data", icon: faArrowsRotate },
-  { name: "Show Full Data Path", icon: faDatabase },
-  { name: "Open in /data(CTRL+ALT+/)", icon: faFilePdf },
-  { name: "toString()", icon: faLinesLeaning },
-  { name: "Show Blueprint", icon: faShoePrints },
-];
+  { name: 'Open In Excel', icon: faFileExcel },
+  { name: 'Export to PDF', icon: faFilePdf },
+  { name: 'Show API URL', icon: faFileCode },
+  { name: 'Update Data', icon: faArrowsRotate },
+  { name: 'Show Full Data Path', icon: faDatabase },
+  { name: 'Open in /data(CTRL+ALT+/)', icon: faFilePdf },
+  { name: 'toString()', icon: faLinesLeaning },
+  { name: 'Show Blueprint', icon: faShoePrints },
+]
+
+interface newFilter {
+  sport: string[];
+  year: string[];
+}
 
 export const Layout2 = () => {
-  const [dropFiles, setDropFiles] = useState();
+  const [dropFiles, setDropFiles] = useState()
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
-  });
-  const maxLength = 20;
-  const filesArray: any[] = [];
+  })
+  const maxLength = 20
+  const filesArray: any[] = []
   const fileValidator = (file: any) => {
-    filesArray.push(file.name);
+    filesArray.push(file.name)
     // console.log(
     //   "fileValidator",
     //   filesArray.indexOf(file.name),
@@ -104,20 +111,20 @@ export const Layout2 = () => {
     // );
     if (file.name.length > maxLength) {
       return {
-        code: "name-too-large",
+        code: 'name-too-large',
         message: `Name is larger than ${maxLength} characters`,
         type: file.type,
-      };
+      }
     }
     if (filesArray.indexOf(file.name) === -1) {
       return {
-        code: "same-filename",
+        code: 'same-filename',
         message: `the file name "${file.name}" is already exist`,
         type: file.type,
-      };
+      }
     }
-    return null;
-  };
+    return null
+  }
   const { getRootProps, getInputProps, fileRejections } = useDropzone({
     validator: fileValidator,
     onDrop: (acceptedFiles: any) => {
@@ -125,59 +132,143 @@ export const Layout2 = () => {
         acceptedFiles.map((file: any) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
-          })
-        )
-      );
+          }),
+        ),
+      )
     },
-  });
+  })
 
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) => (event: KeyboardEvent | MouseEvent) => {
-      setState({ ...state, [anchor]: open });
-    };
+  const toggleDrawer = (anchor: Anchor, open: boolean) => (
+    event: KeyboardEvent | MouseEvent,
+  ) => {
+    setState({ ...state, [anchor]: open })
+  }
   const [menu, setMenu] = React.useState({
     anchorEl: null,
-  });
+  })
   const handleClick = (event: any): void => {
-    setMenu({ anchorEl: event.currentTarget });
-  };
+    setMenu({ anchorEl: event.currentTarget })
+  }
 
   const handleClose = (): void => {
-    setMenu({ anchorEl: null });
-  };
+    setMenu({ anchorEl: null })
+  }
 
-  const classes = useStyles();
+  const [slicers, setSlicers] = React.useState({
+    slicer1: '',
+    slicer2: '',
+    slicer3: '',
+  })
+  const [newFilterModel, setNewFilterModel] = useState<newFilter>({
+    sport: [],
+    year: [],
+  })
+
+  const classes = useStyles()
   return (
     <Box className={classes.root}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} >
+        <Grid>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt:2 }}>
+            <SlicersGroup
+              setNewFilterModel={setNewFilterModel}
+              newFilterModel={newFilterModel}
+            />
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Box sx={{ minWidth: 275, border: '0px solid', m: '10px' }}>
+              <KpiGlobal />
+            </Box>
+            <Box sx={{ minWidth: 275, border: '0px solid', m: '10px' }}>
+              <KpiGlobal />
+            </Box>
+            <Box sx={{ minWidth: 275, border: '0px solid', m: '10px' }}>
+              <KpiGlobal />
+            </Box>
+            <Box sx={{ minWidth: 275, border: '0px solid', m: '10px' }}>
+              <KpiGlobal />
+            </Box>
+            <Box sx={{ minWidth: 275, border: '0px solid', m: '10px' }}>
+              <KpiGlobal />
+            </Box>
+            <Box sx={{ minWidth: 275, border: '0px solid', m: '10px' }}>
+              <KpiGlobal />
+            </Box>
+          </Box>
+        </Grid>
         <Grid item xs={12} sm={12} md={12}>
-          <Paper className={clsx(classes.paper, "paper")}>
+          <Paper className={clsx(classes.paper, 'paper')}>
             <Groups
               id={1}
-              layout={{ type: "layout2", withoutTab: 100 }}
-              tableHeader={"Table 1"}
-              group={"group"}
+              layout={{ type: 'layout2', withoutTab: 100 }}
+              tableHeader={'Table 1'}
+              group={'tab'}
               filter={true}
-              slicers={false}
-              sideSlicers={true}
+              slicers={true}
+              sideSlicers={false}
+              groupStructure={2}
+              rowType="full"
             />
           </Paper>
         </Grid>
         <Grid item xs={12} sm={12} md={12}>
           {/* <TabComponent /> */}
-          <Paper className={clsx(classes.paper, "paper")}>
+          <Paper className={clsx(classes.paper, 'paper')}>
             <Groups
               id={2}
-              layout={{ type: "layout2", withoutTab: 100 }}
-              tableHeader={"Table 2"}
-              group={"tab"}
+              layout={{ type: 'layout2', withoutTab: 100 }}
+              tableHeader={'Table 2'}
+              group={'tab'}
               filter={true}
-              slicers={false}
-              sideSlicers={true}  
+              slicers={true}
+              sideSlicers={false}
+              groupStructure={2}
+              rowType="full"
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          {/* <TabComponent /> */}
+          <Paper className={clsx(classes.paper, 'paper')}>
+            <Groups
+              id={2}
+              layout={{ type: 'layout2', withoutTab: 100 }}
+              tableHeader={'Table 2'}
+              group={'tab'}
+              filter={true}
+              slicers={true}
+              sideSlicers={false}
+              groupStructure={2}
+              rowType="full"
+            />
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} sm={12} md={6}>
+          <Paper className={clsx(classes.paper, 'paper')}>
+            <Groups
+              tableHeader={'Group 1'}
+              group={'group'}
+              filter={true}
+              slicers={true}
+              layout={{ type: 'layout4', withoutTab: 100 }}
+              id={1}
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={12} md={6}>
+          <Paper className={clsx(classes.paper, 'paper')}>
+            <Groups
+              tableHeader={'Table 2'}
+              group={'tab'}
+              filter={true}
+              slicers={true}
+              layout={{ type: 'layout4', withoutTab: 100 }}
+              id={2}
             />
           </Paper>
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}

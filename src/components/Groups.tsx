@@ -11,6 +11,18 @@ import Grid from '@material-ui/core/Grid'
 import clsx from 'clsx'
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
 import { BarChart } from '../highChart/BarChart'
+import Box from '@mui/material/Box'
+import { SlicersGroup } from './SlicersGroup'
+import { GridReadyEvent } from 'ag-grid-community'
+import { useEffect, useRef, useState } from 'react'
+import { AutocompleteComponent } from './Autocomplete'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ColumnPicker } from './ColumnPicker'
+import { Button } from '@mui/material'
+import { useDropzone } from 'react-dropzone'
+import { makeStyles } from '@material-ui/core/styles'
+import { Kpis } from './Kpis'
+
 type Props = {
   tableHeader: string;
   group: string;
@@ -24,19 +36,9 @@ type Props = {
   setSlicers?: (args: any) => void;
   id: number;
   navigation?: {};
+  groupStructure?:number;
+  rowType?:string;
 }
-import Box from '@mui/material/Box'
-import { SlicersGroup } from './SlicersGroup'
-import { GridReadyEvent } from 'ag-grid-community'
-import { useEffect, useRef, useState } from 'react'
-import { AutocompleteComponent } from './Autocomplete'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ColumnPicker } from './ColumnPicker'
-import { Button } from '@mui/material'
-import { useDropzone } from 'react-dropzone'
-import { makeStyles } from '@material-ui/core/styles'
-import { Kpis } from './Kpis'
-
 interface newFilter {
   sport: string[];
   year: string[];
@@ -55,6 +57,8 @@ export const Groups = ({
   id,
   setSlicers,
   navigation,
+  groupStructure,
+  rowType,
 }: Props) => {
   const [newFilterModel, setNewFilterModel] = useState<newFilter>({
     sport: [],
@@ -251,34 +255,6 @@ export const Groups = ({
     <>
       {group === 'group' && layout?.type === 'layout1' && (
         <Box style={{ height: '100%' }}>
-          {/* <GroupMenus
-            heading={tableHeader}
-            filter={filter}
-            group={"group"}
-            slicers={slicers}
-            sideSlicers={sideSlicers}
-            onGridReady={onGridReady}
-            newFilterModel={newFilterModel}
-            setNewFilterModel={setNewFilterModel}
-            id={id}
-          /> */}
-          {/* {slicers && <SlicersGroup />} */}
-          {/* <TableHeaderMenu
-            heading={tableHeader}
-            filter={filter}
-            slicers={slicers}
-            sideSlicers={sideSlicers}
-            id={id}
-            setSlicers={setSlicers}
-            newFilterModel={newFilterModel}
-            setNewFilterModel={setNewFilterModel}
-          />
-          <DisplayDynamicHeader
-            storeType="partial"
-            theme="ag-theme-alpine"
-            layout={layout}
-            onGridReady={onGridReady}
-          /> */}
           <Box className={classes.root}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12} md={8}>
@@ -294,7 +270,6 @@ export const Groups = ({
                     setNewFilterModel={setNewFilterModel}
                     id={id}
                   />
-                  {/* {slicers && <SlicersGroup />} */}
                   <TableHeaderMenu
                     heading={tableHeader}
                     filter={filter}
@@ -403,7 +378,6 @@ export const Groups = ({
                     setNewFilterModel={setNewFilterModel}
                     id={id}
                   />
-                  {/* {slicers && <SlicersGroup />} */}
                   <TableHeaderMenu
                     heading={tableHeader}
                     filter={filter}
@@ -441,7 +415,6 @@ export const Groups = ({
             setNewFilterModel={setNewFilterModel}
             id={id}
           />
-          {/* {slicers && <SlicersGroup />} */}
           <NavigationButton />
           <TableHeaderMenu
             heading={tableHeader}
@@ -460,6 +433,7 @@ export const Groups = ({
             theme="ag-theme-alpine"
             layout={layout}
             onGridReady={onGridReady}
+            groupStructure={2}
           />
         </Box>
       )}
@@ -486,6 +460,8 @@ export const Groups = ({
             onGridReady={onGridReady}
             newFilterModel={newFilterModel}
             setNewFilterModel={setNewFilterModel}
+            groupStructure={groupStructure}
+            rowType={rowType}
           />
         </Box>
       )}
