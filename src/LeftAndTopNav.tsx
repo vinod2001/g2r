@@ -154,7 +154,7 @@ export default function MiniDrawer() {
           }}
         >
           <Box sx={{ justifyContent: "flex-start", color: "#333" }}>
-            <h2>Demand Planning</h2>
+            <h2>Projects</h2>
           </Box>
           <Box sx={{ justifyContent: "flex-end" }}>
             <IconButton>
@@ -339,10 +339,10 @@ export default function MiniDrawer() {
               variant="fullWidth"
               aria-label="full width tabs example"
             >
-              <Tab label="Layout 1" sx={{ borderRight: "1px solid #5b7fa6" }} />
-              <Tab label="Project Portfolio 2" sx={{ borderRight: "1px solid #5b7fa6" }} />
-              <Tab label="Layout 3" sx={{ borderRight: "1px solid #5b7fa6" }} />
-              <Tab label="Layout 4" />
+              <Tab label="Project Review" sx={{ borderRight: "1px solid #5b7fa6" }} />
+              <Tab label="Project Portfolio" sx={{ borderRight: "1px solid #5b7fa6" }} />
+              <Tab label="Project List" sx={{ borderRight: "1px solid #5b7fa6" }} />
+              <Tab label="Project at Risk" />
             </Tabs>
           </AppBar>
 

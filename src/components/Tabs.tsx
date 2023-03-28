@@ -100,9 +100,9 @@ export const TabComponent = ({
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
       >
-        <Tab label="Item One" />
-        <Tab label="Item Two" />
-        <Tab label="Item Three" />
+        <Tab label="Top Projects" />
+        <Tab label="Project Detail" />
+        <Tab label="Business Impact" />
         <Tab label="Item Four" />
         <Tab label="Item Five" />
         <Tab label="Item Six" />

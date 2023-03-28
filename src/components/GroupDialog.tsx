@@ -110,7 +110,7 @@ export const GroupDialog = ({
         </BootstrapDialogTitle> */}
         <DialogTitle sx={{ m: 0, p: 2 }}>
           <Box display={"flex"} justifyContent={"space-between"}>
-            <Box display={"flex"}> Widget title</Box>
+            <Box display={"flex"}> Top Projects</Box>
             <Box justifyContent={"flex-end"}>
               <FontAwesomeIcon
                 icon={faXmark}

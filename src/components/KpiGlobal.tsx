@@ -6,7 +6,9 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 
-export const KpiGlobal = () => {
+export const KpiGlobal = (itemDetails:any) => {
+  const {content1,content2,content3,profit} = itemDetails.itemDetails;
+  console.log(content1); //{content1,content2,content3,profit}
   return (
     <>
       <Card sx={{ p: '0', backgroundColor: '#f2f9ff' }}>
@@ -20,23 +22,23 @@ export const KpiGlobal = () => {
           }}
         >
           <Typography sx={{ fontSize: 14, fontWeight: 'bold' }}>
-            Project Spend as % Total Spend YTD
+            {content1}
           </Typography>
           <Typography
             sx={{ fontSize: 35, fontWeight: 'bold', color: '#2196f3' }}
           >
             <PlayArrowIcon
               sx={{
-                color: 'green',
-                transform: 'rotate(270deg)',
+                color: profit?'green':'red',
+                transform: profit?'rotate(270deg)':'rotate(-30deg)',
                 border: '0px solid',
                 p: 0,
               }}
             />
-            <span>39.9%</span>
+            <span style={{color:profit?'green':'red'}}>{content2}</span>
           </Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary">
-            CapEx: $907.89K
+            {content3}
           </Typography>
         </CardContent>
       </Card>

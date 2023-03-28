@@ -140,7 +140,7 @@ export const DisplayDynamicHeader = ({
     } else if (layout?.type === 'layout2' && group !== 'tab') {
       return '94%'
     } else if (layout?.type === 'layout2' && group === 'tab') {
-      return '92%'
+      return '90%'
     } else if (layout?.type === 'layout1' && group !== 'tab') {
       return '98%'
     } else {
@@ -180,6 +180,8 @@ export const DisplayDynamicHeader = ({
       }}
     >
     {groupStructure === 2 && rowType==="full"?(
+
+      <Box style={{ height:checkHeight()}}>
     <Box style={{display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
@@ -235,7 +237,10 @@ export const DisplayDynamicHeader = ({
         <Box sx={{width:'49%',height:'100%'}}>
         <BarChart />
         </Box>
-      </Box>):(<Box style={{
+      </Box>
+      <BarChart />
+      </Box>
+      ):(<Box style={{
         height:'100%', 
     width: '100%',
     overflowY: 'scroll',
