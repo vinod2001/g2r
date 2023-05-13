@@ -116,7 +116,7 @@ export const Groups = ({
   useEffect(() => {
     // console.log(layout.type);
     let { urls, numbers } = checkDomain(0)
-    let url: string = urls + ''
+    let url: string = 'https://jsonplaceholder.typicode.com/comments?' // urls + ''
 
     if (newFilterModel.sport.length > 0)
       url =
