@@ -159,8 +159,8 @@ export const Groups = ({
       // console.log(process.env);
       // console.log(`params:${params}`);
       const { startRow, endRow, filterModel, sortModel } = params.request
-      if (urls) {
-        let url = urls
+      // if (urls) {
+        let url = 'https://jsonplaceholder.typicode.com/comments?' // urls
         // Sorting
         if (sortModel.length) {
           const { colId, sort } = sortModel[0]
@@ -190,7 +190,7 @@ export const Groups = ({
             console.error(error)
             params.failCallback()
           })
-      }
+      // }
     },
   }
 
