@@ -125,7 +125,7 @@ export const DisplayDynamicHeader = ({
 
   const checkHeight = (): string => {
     if (layout?.type === 'layout4' && group === 'tab') {
-      return '80%'
+      return '100%'
     } else if (layout?.type === 'layout3' && group === 'tab') {
       return '92%'
     } else if (layout?.type === 'layout4' && group !== 'tab') {
@@ -135,7 +135,7 @@ export const DisplayDynamicHeader = ({
     } else if (layout?.type === 'layout2' && group !== 'tab') {
       return '94%'
     } else if (layout?.type === 'layout2' && group === 'tab') {
-      return '90%'
+      return '94%'
     } else if (layout?.type === 'layout1' && group !== 'tab') {
       return '98%'
     } else {

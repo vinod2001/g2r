@@ -197,7 +197,7 @@ export const TableHeaderMenu = ({
             aria-haspopup="true"
             onClick={handleClick}
           />
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faGauge}
             style={{
               color: 'black',
@@ -206,7 +206,7 @@ export const TableHeaderMenu = ({
               cursor: 'pointer',
             }}
             onClick={() => setKpis(true)}
-          />
+          /> */}
           <CustomWidthTooltip title={longText} arrow>
             
             <Button sx={{ m: 0, p:0, border:'0px solid', minWidth:'10px'}}><FontAwesomeIcon

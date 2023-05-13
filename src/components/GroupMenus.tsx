@@ -82,7 +82,7 @@ export const GroupMenus = ({
           <AccordionDetails>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             {kpiData.map((item, index)=>(
-              <Box key={index} sx={{ minWidth: 275, border: '0px solid', }}>
+              <Box key={index} sx={{ width: '240px', border: '0px solid', }}>
               <KpiGlobal itemDetails={item}/>
             </Box>
             ))}

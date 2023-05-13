@@ -125,7 +125,7 @@ export const TabComponent = ({
         //     {/* <Groups tableHeader={'Table 2'} /> */}
         //   </Grid>
         // </Grid>
-        <Box style={{ height: "100%" }}>
+        <Box style={{ height: "80%" }}>
           {/* {slicers && <SlicersGroup />} */}
           <TableHeaderMenu
             heading={"Group 2"}

@@ -209,7 +209,7 @@ export const Layout2 = () => {
             {kpiData.map((item, index) => (
               <Box
                 key={index}
-                sx={{ minWidth: 275, border: '0px solid', m: '10px' }}
+                sx={{ border: '0px solid', m: '10px' }}
               >
                 <KpiGlobal itemDetails={item} />
               </Box>
