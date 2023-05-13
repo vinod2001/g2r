@@ -21,6 +21,7 @@ import Box from '@mui/material/Box'
 import { camelCase } from 'lodash'
 import { BarChart } from '../highChart/BarChart'
 import { makeStyles } from '@material-ui/core/styles'
+import { PieChart } from '../highChart/PieChart'
 
 type Props = {
   storeType: 'partial' | 'full';
@@ -232,7 +233,7 @@ export const DisplayDynamicHeader = ({
               <hr />
             </Box>
             <Box sx={{ width: '49%', height: '100%' }}>
-              <BarChart />
+              <PieChart />
             </Box>
           </Box>
           <BarChart />
