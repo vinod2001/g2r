@@ -34,7 +34,7 @@ export const checkDomain = (count: number) => {
       bronze: 0,
       total: 1,
     }
-  } else if (process.env.NODE_ENV === 'development') {
+  } else if (process.env.NODE_ENV === 'production') {
     urls = process.env.REACT_APP_PRODUCTION_URL
     numbers = 500
     addData = {
