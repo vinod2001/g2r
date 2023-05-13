@@ -11,7 +11,7 @@ export const KpiGlobal = (itemDetails:any) => {
   console.log(content1); //{content1,content2,content3,profit}
   return (
     <>
-      <Card sx={{ p: '0', backgroundColor: '#f2f9ff' }}>
+      <Card sx={{ p: '0', backgroundColor: '#fff' }}>
         <CardContent
           sx={{
             border: '0px solid',

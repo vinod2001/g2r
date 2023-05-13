@@ -29,14 +29,14 @@ import { Groups } from './components/Groups'
 import { KpiGlobal } from './components/KpiGlobal'
 import { SlicersGroup } from './components/SlicersGroup'
 import apptioLogo from './images/logoFull.png'
-import {kpiData} from './mocks'
+import { kpiData } from './mocks'
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#adc2d9',
+    backgroundColor: '#f5f7f8',
     padding: '10px',
   },
   paper: {
@@ -166,23 +166,38 @@ export const Layout2 = () => {
     year: [],
   })
 
-  
-
   const classes = useStyles()
   return (
     <Box className={classes.root}>
-      <Grid container spacing={2} >
+      <Grid container spacing={2}>
         <Grid>
-          <Box sx={{m:1, display: 'flex', justifyContent: 'space-between'}}>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems:'center', border:'0px solid', width:'500px' }}>
-              <Box sx={{width: '200px', height: '50px',border:'0px solid', }}>
-              <img src={apptioLogo} style={{ width: '100%', height: '100%',  }} />
+          <Box sx={{ m: 1, display: 'flex', justifyContent: 'space-between' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                border: '0px solid',
+                width: '500px',
+              }}
+            >
+              <Box sx={{ width: '200px', height: '50px', border: '0px solid' }}>
+                <img
+                  src={apptioLogo}
+                  style={{ width: '100%', height: '100%' }}
+                />
               </Box>
-              <Box mx={{marginLeft:'20px', border:'0px solid', fontSize:'25px' }}>
+              <Box
+                mx={{
+                  marginLeft: '20px',
+                  border: '0px solid',
+                  fontSize: '25px',
+                }}
+              >
                 Project Review
               </Box>
             </Box>
-            
+
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
               <SlicersGroup
                 setNewFilterModel={setNewFilterModel}
@@ -191,10 +206,13 @@ export const Layout2 = () => {
             </Box>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            {kpiData.map((item, index)=>(
-              <Box key={index} sx={{ minWidth: 275, border: '0px solid', m: '10px' }}>
-              <KpiGlobal itemDetails={item}/>
-            </Box>
+            {kpiData.map((item, index) => (
+              <Box
+                key={index}
+                sx={{ minWidth: 275, border: '0px solid', m: '10px' }}
+              >
+                <KpiGlobal itemDetails={item} />
+              </Box>
             ))}
           </Box>
         </Grid>
@@ -213,7 +231,7 @@ export const Layout2 = () => {
             />
           </Paper>
         </Grid>
-        
+
         <Grid item xs={12} sm={12} md={12}>
           {/* <TabComponent /> */}
           <Paper className={clsx(classes.paper, 'paper')}>
@@ -270,9 +288,6 @@ export const Layout2 = () => {
             />
           </Paper>
         </Grid>
-
-        
-        
       </Grid>
     </Box>
   )

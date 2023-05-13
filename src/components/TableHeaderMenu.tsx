@@ -42,7 +42,7 @@ This table shows the total quantity of Servers and Storage available and is sour
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#adc2d9',
+    backgroundColor: '#f5f7f8',
     padding: '10px',
   },
   paper: {

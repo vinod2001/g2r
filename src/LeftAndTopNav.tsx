@@ -266,7 +266,7 @@ export default function MiniDrawer() {
           ))}
         </List> */}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, background: "#adc2d9" }}>
+      <Box component="main" sx={{ flexGrow: 1, background: "#f5f7f8" }}>
         <DrawerHeader />
         <div>
           {open === true ? (
@@ -326,9 +326,10 @@ export default function MiniDrawer() {
           <AppBar
             position="static"
             style={{
-              background: "#47617e", //#47617e
+              background: "#fff", //#47617e
               display: "flex",
-              color: "white",
+              color: "#222",
+              marginBottom:'1px'
             }}
           >
             <Tabs
@@ -338,6 +339,7 @@ export default function MiniDrawer() {
               textColor="inherit"
               variant="fullWidth"
               aria-label="full width tabs example"
+              
             >
               <Tab label="Project Review" sx={{ borderRight: "1px solid #5b7fa6" }} />
               <Tab label="Project Portfolio" sx={{ borderRight: "1px solid #5b7fa6" }} />

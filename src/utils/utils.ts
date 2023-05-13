@@ -18,7 +18,7 @@ export const checkDomain = (count: number) => {
   let urls: string | undefined = ''
   let numbers = 0
   let addData = {}
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'test') {
     urls = process.env.REACT_APP_DEV_URL
     numbers = 8618
     addData = {
@@ -34,7 +34,7 @@ export const checkDomain = (count: number) => {
       bronze: 0,
       total: 1,
     }
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === 'development') {
     urls = process.env.REACT_APP_PRODUCTION_URL
     numbers = 500
     addData = {

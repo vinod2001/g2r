@@ -20,8 +20,7 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import { camelCase } from 'lodash'
 import { BarChart } from '../highChart/BarChart'
-import { makeStyles } from "@material-ui/core/styles";
-
+import { makeStyles } from '@material-ui/core/styles'
 
 type Props = {
   storeType: 'partial' | 'full';
@@ -33,29 +32,25 @@ type Props = {
   onGridReady: any;
   group?: string;
   groupStructure?: number;
-  rowType?:string;
+  rowType?: string;
 }
 
-
-
-  const horizondalAlignment= {
-    display: 'flex',
-    justifyContent: 'space-between',
+const horizondalAlignment = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+  overflowY: 'scroll',
+  '&Box': {
+    width: '49%',
+  },
+}
+const verticalAlignment = {
+  width: '100%',
+  overflowY: 'scroll',
+  '& Box': {
     width: '100%',
-    overflowY: 'scroll',
-    '&Box':{
-      width:'49%'
-    }
-  }
-  const verticalAlignment= {
-    width: '100%',
-    overflowY: 'scroll',
-    '& Box':{
-      width:'100%'
-    }
-  }
-
-
+  },
+}
 
 export const DisplayDynamicHeader = ({
   storeType,
@@ -126,7 +121,7 @@ export const DisplayDynamicHeader = ({
     }
   }
 
-  const [height,setHeight] = React.useState();
+  const [height, setHeight] = React.useState()
 
   const checkHeight = (): string => {
     if (layout?.type === 'layout4' && group === 'tab') {
@@ -147,7 +142,6 @@ export const DisplayDynamicHeader = ({
       return '100%'
     }
   }
-  
 
   const sideBar = useMemo<
     SideBarDef | string | string[] | boolean | null
@@ -179,124 +173,130 @@ export const DisplayDynamicHeader = ({
         overflowY: 'scroll',
       }}
     >
-    {groupStructure === 2 && rowType==="full"?(
-
-      <Box style={{ height:checkHeight()}}>
-    <Box style={{display: 'flex',
-    justifyContent: 'space-between',
-    width: '100%',
-    overflowY: 'scroll',
-    height:checkHeight()}}>
-        <Box sx={{width:'49%',height:'100%'}}>
-        <div style={gridStyle} className={theme}>
-          <AgGridReact
-            ref={gridRef}
-            // columnDefs={colDef}
-            defaultColDef={defaultColDef}
-            rowModelType={'serverSide'}
-            // sideBar={sideBar}
-            // pagination={true}
-            // paginationPageSize={500}
-            animateRows={true}
-            // sideBar={true}
-            serverSideStoreType={storeType}
-            enableRangeSelection={true}
-            onGridReady={onGridReady}
-          />
-        </div>
-        <Box
-          sx={{
-            width: 'auto',
-          }}
-          display="flex"
-          justifyContent="space-between"
-          style={{ marginTop: '10px' }}
-        >
-          {/* <button type="button" className="" onClick={() => addRow(0)}>
+      {groupStructure === 2 && rowType === 'full' ? (
+        <Box style={{ height: checkHeight() }}>
+          <Box
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              overflowY: 'scroll',
+              height: checkHeight(),
+            }}
+          >
+            <Box sx={{ width: '49%', height: '100%' }}>
+              <div style={gridStyle} className={theme}>
+                <AgGridReact
+                  ref={gridRef}
+                  // columnDefs={colDef}
+                  defaultColDef={defaultColDef}
+                  rowModelType={'serverSide'}
+                  // sideBar={sideBar}
+                  // pagination={true}
+                  // paginationPageSize={500}
+                  animateRows={true}
+                  // sideBar={true}
+                  serverSideStoreType={storeType}
+                  enableRangeSelection={true}
+                  onGridReady={onGridReady}
+                />
+              </div>
+              <Box
+                sx={{
+                  width: 'auto',
+                }}
+                display="flex"
+                justifyContent="space-between"
+                style={{ marginTop: '10px' }}
+              >
+                {/* <button type="button" className="" onClick={() => addRow(0)}>
           Add Row
         </button> */}
-          <Box display="flex">
-            <Button
-              variant="contained"
-              onClick={() => addData()}
-              style={{ marginRight: '10px' }}
-            >
-              Add Row
-            </Button>
-            <Button variant="contained">Publish</Button>
+                <Box display="flex">
+                  <Button
+                    variant="contained"
+                    onClick={() => addData()}
+                    style={{ marginRight: '10px' }}
+                  >
+                    Add Row
+                  </Button>
+                  <Button variant="contained">Publish</Button>
+                </Box>
+                <Box display="flex" justifyContent={'flex-end'}>
+                  <Button variant="contained" style={{ marginRight: '10px' }}>
+                    Save
+                  </Button>
+                  <Button variant="contained">Cancel</Button>
+                </Box>
+              </Box>
+              <hr />
+            </Box>
+            <Box sx={{ width: '49%', height: '100%' }}>
+              <BarChart />
+            </Box>
           </Box>
-          <Box display="flex" justifyContent={'flex-end'}>
-            <Button variant="contained" style={{ marginRight: '10px' }}>
-              Save
-            </Button>
-            <Button variant="contained">Cancel</Button>
-          </Box>
+          <BarChart />
         </Box>
-        <hr />
-        </Box>
-        <Box sx={{width:'49%',height:'100%'}}>
-        <BarChart />
-        </Box>
-      </Box>
-      <BarChart />
-      </Box>
-      ):(<Box style={{
-        height:'100%', 
-    width: '100%',
-    overflowY: 'scroll',
-    }}>
-        <Box style={{height:'100%'}}>
-        <div style={gridStyle} className={theme}>
-          <AgGridReact
-            ref={gridRef}
-            // columnDefs={colDef}
-            defaultColDef={defaultColDef}
-            rowModelType={'serverSide'}
-            // sideBar={sideBar}
-            // pagination={true}
-            // paginationPageSize={500}
-            animateRows={true}
-            // sideBar={true}
-            serverSideStoreType={storeType}
-            enableRangeSelection={true}
-            onGridReady={onGridReady}
-          />
-        </div>
+      ) : (
         <Box
-          sx={{
-            width: 'auto',
+          style={{
+            height: '100%',
+            width: '100%',
+            overflowY: 'scroll',
           }}
-          display="flex"
-          justifyContent="space-between"
-          style={{ marginTop: '10px' }}
         >
-          {/* <button type="button" className="" onClick={() => addRow(0)}>
+          <Box style={{ height: '100%' }}>
+            <div style={gridStyle} className={theme}>
+              <AgGridReact
+                ref={gridRef}
+                // columnDefs={colDef}
+                defaultColDef={defaultColDef}
+                rowModelType={'serverSide'}
+                // sideBar={sideBar}
+                // pagination={true}
+                // paginationPageSize={500}
+                animateRows={true}
+                // sideBar={true}
+                serverSideStoreType={storeType}
+                enableRangeSelection={true}
+                onGridReady={onGridReady}
+              />
+            </div>
+            <Box
+              sx={{
+                width: 'auto',
+              }}
+              display="flex"
+              justifyContent="space-between"
+              style={{ marginTop: '10px' }}
+            >
+              {/* <button type="button" className="" onClick={() => addRow(0)}>
           Add Row
         </button> */}
-          <Box display="flex">
-            <Button
-              variant="contained"
-              onClick={() => addData()}
-              style={{ marginRight: '10px' }}
-            >
-              Add Row
-            </Button>
-            <Button variant="contained">Publish</Button>
+              <Box display="flex">
+                <Button
+                  variant="contained"
+                  onClick={() => addData()}
+                  style={{ marginRight: '10px' }}
+                >
+                  Add Row
+                </Button>
+                <Button variant="contained">Publish</Button>
+              </Box>
+              <Box display="flex" justifyContent={'flex-end'}>
+                <Button variant="contained" style={{ marginRight: '10px' }}>
+                  Save
+                </Button>
+                <Button variant="contained">Cancel</Button>
+              </Box>
+            </Box>
+            <hr />
           </Box>
-          <Box display="flex" justifyContent={'flex-end'}>
-            <Button variant="contained" style={{ marginRight: '10px' }}>
-              Save
-            </Button>
-            <Button variant="contained">Cancel</Button>
+          <Box sx={{ height: '100%' }}>
+            <BarChart />
           </Box>
         </Box>
-        <hr />
-        </Box>
-        <Box sx={{height:'100%'}}>
-        <BarChart />
-        </Box>
-      </Box>)}
+      )}
     </Box>
   )
 }
-
