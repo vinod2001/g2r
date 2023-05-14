@@ -117,7 +117,7 @@ export const Groups = ({
   useEffect(() => {
     // console.log(layout.type);
     let { urls, numbers } = checkDomain(0)
-    let url: string = 'https://jsonplaceholder.typicode.com/comments?' // urls + ''
+    let url: string = urls + ''
 
     if (newFilterModel.sport.length > 0)
       url =
@@ -197,10 +197,12 @@ export const Groups = ({
 
   useEffect(()=>{
     const { urls, numbers }: any = checkDomain(0)
+    if(rowData.length==0){
     fetch(urls)
     .then((res) => res.json())
     .then(data=>setRowData(data))
-  },[])
+    }
+  },[rowData])
 
   const onGridReady = (params: GridReadyEvent) => {
     // fetch('http://localhost:4000/olympic?') //https://www.ag-grid.com/example-assets/olympic-winners.json
