@@ -117,7 +117,7 @@ export const Groups = ({
   useEffect(() => {
     // console.log(layout.type);
     let { urls, numbers } = checkDomain(0)
-    let url: string = urls + ''
+    let url: string = 'https://jsonplaceholder.typicode.com/comments?' // urls + ''
 
     if (newFilterModel.sport.length > 0)
       url =
@@ -196,9 +196,9 @@ export const Groups = ({
   // }
 
   useEffect(()=>{
-    const { urls, numbers }: any = checkDomain(0)
+    //const { urls, numbers }: any = checkDomain(0)
     if(rowData.length==0){
-    fetch(urls)
+    fetch('https://jsonplaceholder.typicode.com/comments?')
     .then((res) => res.json())
     .then(data=>setRowData(data))
     }
