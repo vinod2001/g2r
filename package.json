@@ -36,13 +36,15 @@
     "react-html-parser": "^2.0.2",
     "react-scripts": "4.0.3",
     "react-use-intercom": "^2.0.0",
+    "serve": "^14.2.0",
     "typescript": "4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prod": "yarn build && serve build"
   },
   "browserslist": [
     ">0.2%",

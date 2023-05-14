@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import 'ag-grid-enterprise'
+import 'ag-grid-community'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
@@ -72,7 +72,13 @@ export const DisplayDynamicHeader = ({
       floatingFilter: true,
       resizable: true,
     }
-  }, [])
+  }, []);
+  const [columnDefs, setColumnDefs] = useState([
+    { field: 'postId'},
+    { field: 'name'},
+    { field: 'email'},
+    { field: 'body' },
+]);
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), [])
   const gridStyle = useMemo(
     () => ({ height: 'calc(100% - 110px)', width: '100%' }),
@@ -181,7 +187,7 @@ export const DisplayDynamicHeader = ({
               display: 'flex',
               justifyContent: 'space-between',
               width: '100%',
-              overflowY: 'scroll',
+              // overflowY: 'scroll',
               height: checkHeight(),
             }}
           >
@@ -189,17 +195,18 @@ export const DisplayDynamicHeader = ({
               <div style={gridStyle} className={theme}>
                 <AgGridReact
                   ref={gridRef}
-                  // columnDefs={colDef}
+                  columnDefs={columnDefs}
                   defaultColDef={defaultColDef}
-                  rowModelType={'serverSide'}
+                  // rowModelType={'serverSide'}
                   // sideBar={sideBar}
                   // pagination={true}
                   // paginationPageSize={500}
-                  animateRows={true}
+                  // animateRows={true}
                   // sideBar={true}
-                  serverSideStoreType={storeType}
-                  enableRangeSelection={true}
-                  onGridReady={onGridReady}
+                  // serverSideStoreType={storeType}
+                  // enableRangeSelection={true}
+                  rowData={onGridReady}
+                  // onGridReady={onGridReady}
                 />
               </div>
               <Box
@@ -232,11 +239,13 @@ export const DisplayDynamicHeader = ({
               </Box>
               <hr />
             </Box>
-            <Box sx={{ width: '49%', height: '100%' }}>
+            <Box sx={{ width: '49%', height: '88%', border: '1px solid #ddd', display:'flex', justifyContent:'center' }}>
               <PieChart />
             </Box>
           </Box>
-          <BarChart />
+          <Box sx={{border:'1px solid #ddd'}}>
+            <BarChart />
+          </Box>
         </Box>
       ) : (
         <Box
@@ -250,17 +259,18 @@ export const DisplayDynamicHeader = ({
             <div style={gridStyle} className={theme}>
               <AgGridReact
                 ref={gridRef}
-                // columnDefs={colDef}
+                columnDefs={columnDefs}
                 defaultColDef={defaultColDef}
-                rowModelType={'serverSide'}
+                //rowModelType={'serverSide'}
                 // sideBar={sideBar}
                 // pagination={true}
                 // paginationPageSize={500}
-                animateRows={true}
+                // animateRows={true}
                 // sideBar={true}
-                serverSideStoreType={storeType}
-                enableRangeSelection={true}
-                onGridReady={onGridReady}
+                // serverSideStoreType={storeType}
+                // enableRangeSelection={true}
+                rowData={onGridReady}
+                // onGridReady={onGridReady}
               />
             </div>
             <Box
@@ -293,7 +303,7 @@ export const DisplayDynamicHeader = ({
             </Box>
             <hr />
           </Box>
-          <Box sx={{ height: '100%' }}>
+          <Box sx={{ height: '100%', border:'1px solid #ddd' }}>
             <BarChart />
           </Box>
         </Box>

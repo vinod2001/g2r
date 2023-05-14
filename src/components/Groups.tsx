@@ -106,6 +106,7 @@ export const Groups = ({
       padding: '15px',
     },
   }))
+  const [rowData, setRowData] = useState<any>([]);
   const [newParam, setNewParam] = useState<any>()
 
   const gridRef = useRef<AgGridReact>(null)
@@ -152,47 +153,54 @@ export const Groups = ({
       })
   }, [newFilterModel])
 
-  const datasource = {
-    getRows(params: any) {
-      setNewParam(params)
-      const { urls, numbers }: any = checkDomain(0)
-      // console.log(process.env);
-      // console.log(`params:${params}`);
-      const { startRow, endRow, filterModel, sortModel } = params.request
-      // if (urls) {
-        let url = 'https://jsonplaceholder.typicode.com/comments?' // urls
-        // Sorting
-        if (sortModel.length) {
-          const { colId, sort } = sortModel[0]
-          url += `_sort=${colId}&_order=${sort}&`
-        }
-        //Pagination
-        url += `_start=${startRow}&_end=${endRow}&`
+  // const datasource = {
+  //   getRows(params: any) {
+  //     setNewParam(params)
+  //     const { urls, numbers }: any = checkDomain(0)
+  //     // console.log(process.env);
+  //     // console.log(`params:${params}`);
+  //     const { startRow, endRow, filterModel, sortModel } = params.request
+  //     // if (urls) {
+  //       let url = 'https://jsonplaceholder.typicode.com/comments?' // urls
+  //       // Sorting
+  //       if (sortModel.length) {
+  //         const { colId, sort } = sortModel[0]
+  //         url += `_sort=${colId}&_order=${sort}&`
+  //       }
+  //       //Pagination
+  //       url += `_start=${startRow}&_end=${endRow}&`
 
-        //Filtering
-        const filterKeys = Object.keys(filterModel)
-        filterKeys.forEach((filter) => {
-          const value =
-            filterModel[filter].filter.charAt(0).toUpperCase() +
-            filterModel[filter].filter.slice(1)
-          url += `${filter}=${value}&`
-        })
+  //       //Filtering
+  //       const filterKeys = Object.keys(filterModel)
+  //       filterKeys.forEach((filter) => {
+  //         const value =
+  //           filterModel[filter].filter.charAt(0).toUpperCase() +
+  //           filterModel[filter].filter.slice(1)
+  //         url += `${filter}=${value}&`
+  //       })
 
-        fetch(url)
-          .then((httpResponse) => httpResponse.json())
-          .then((response) => {
-            params.successCallback(response, numbers)
-            // console.log(response, numbers);
+  //       fetch(url)
+  //         .then((httpResponse) => httpResponse.json())
+  //         .then((response) => {
+  //           params.successCallback(response, numbers)
+  //           // console.log(response, numbers);
 
-            params.api.setColumnDefs(filterHeader(response))
-          })
-          .catch((error) => {
-            console.error(error)
-            params.failCallback()
-          })
-      // }
-    },
-  }
+  //           params.api.setColumnDefs(filterHeader(response))
+  //         })
+  //         .catch((error) => {
+  //           console.error(error)
+  //           params.failCallback()
+  //         })
+  //     // }
+  //   },
+  // }
+
+  useEffect(()=>{
+    const { urls, numbers }: any = checkDomain(0)
+    fetch(urls)
+    .then((res) => res.json())
+    .then(data=>setRowData(data))
+  },[])
 
   const onGridReady = (params: GridReadyEvent) => {
     // fetch('http://localhost:4000/olympic?') //https://www.ag-grid.com/example-assets/olympic-winners.json
@@ -209,7 +217,9 @@ export const Groups = ({
     //   params.api.setServerSideDatasource(params.successCallback(newParam));
     // }
 
-    params.api.setServerSideDatasource(datasource)
+    // params.api.setServerSideDatasource(datasource)
+    // setRowData(datasource);
+
   }
   const classes = useStyles()
   const maxLength = 20
@@ -265,7 +275,7 @@ export const Groups = ({
                     group={'group'}
                     slicers={slicers}
                     sideSlicers={sideSlicers}
-                    onGridReady={onGridReady}
+                    onGridReady={rowData}
                     newFilterModel={newFilterModel}
                     setNewFilterModel={setNewFilterModel}
                     id={id}
@@ -284,7 +294,7 @@ export const Groups = ({
                     storeType="partial"
                     theme="ag-theme-alpine"
                     layout={layout}
-                    onGridReady={onGridReady}
+                    onGridReady={rowData}
                   />
                 </Paper>
               </Grid>
@@ -373,7 +383,7 @@ export const Groups = ({
                     group={'group'}
                     slicers={slicers}
                     sideSlicers={sideSlicers}
-                    onGridReady={onGridReady}
+                    onGridReady={rowData}
                     newFilterModel={newFilterModel}
                     setNewFilterModel={setNewFilterModel}
                     id={id}
@@ -392,7 +402,7 @@ export const Groups = ({
                     storeType="partial"
                     theme="ag-theme-alpine"
                     layout={layout}
-                    onGridReady={onGridReady}
+                    onGridReady={rowData}
                   />
                   <BarChart />
                 </Paper>
@@ -410,7 +420,7 @@ export const Groups = ({
             group={'group'}
             slicers={slicers}
             sideSlicers={sideSlicers}
-            onGridReady={onGridReady}
+            onGridReady={rowData}
             newFilterModel={newFilterModel}
             setNewFilterModel={setNewFilterModel}
             id={id}
@@ -432,7 +442,7 @@ export const Groups = ({
             storeType="partial"
             theme="ag-theme-alpine"
             layout={layout}
-            onGridReady={onGridReady}
+            onGridReady={rowData}
             groupStructure={2}
           />
         </Box>
@@ -446,7 +456,7 @@ export const Groups = ({
             group={'tab'}
             slicers={slicers}
             sideSlicers={sideSlicers}
-            onGridReady={onGridReady}
+            onGridReady={rowData}
             newFilterModel={newFilterModel}
             setNewFilterModel={setNewFilterModel}
           />
@@ -457,7 +467,7 @@ export const Groups = ({
             id={id}
             layout={layout}
             group={'tab'}
-            onGridReady={onGridReady}
+            onGridReady={rowData}
             newFilterModel={newFilterModel}
             setNewFilterModel={setNewFilterModel}
             groupStructure={groupStructure}

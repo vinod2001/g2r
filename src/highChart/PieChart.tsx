@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Highcharts, { Options } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-
+import Box from "@mui/material/Box";
 
 export const PieChart: React.FC = () => {
 
@@ -10,10 +10,11 @@ export const PieChart: React.FC = () => {
       plotBackgroundColor: "",
       plotBorderWidth: 0,
       plotShadow: false,
-      type: 'pie'
+      type: 'pie',
+      height: (9 / 16 * 100) + '%'
   },
   title: {
-      text: 'Browser market shares in May, 2020',
+      text: '',
       align: 'left'
   },
   tooltip: {
@@ -72,10 +73,12 @@ export const PieChart: React.FC = () => {
 
   return (
     <>
+    <Box sx={{width:'75%', height:'75%'}}>
       <HighchartsReact
         highcharts={Highcharts}
         options={chartOptions}
       />
+    </Box>
     </>
   );
 
