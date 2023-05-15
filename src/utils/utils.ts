@@ -45,7 +45,7 @@ export const checkDomain = (count: number) => {
       body:
         'laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium',
     }
-  } else {
+  } else if(process.env.NODE_ENV.trim() === 'production'){
     urls = process.env.REACT_APP_PRODUCTION_URL
   }
 

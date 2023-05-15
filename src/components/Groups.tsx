@@ -116,8 +116,8 @@ export const Groups = ({
   const [isKpi, setKpi] = useState(false)
   useEffect(() => {
     // console.log(layout.type);
-    // let { urls, numbers } = checkDomain(0)
-    let urls = 'https://jsonplaceholder.typicode.com/comments?';
+    let { urls, numbers } = checkDomain(0)
+    // let urls = urls;
     let url: string = urls + ''
 
     if (newFilterModel.sport.length > 0)
