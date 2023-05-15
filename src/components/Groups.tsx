@@ -203,8 +203,15 @@ export const Groups = ({
     .then(data=>setRowData(data))
     }
   },[rowData])
+  // const onGridReady = useCallback((params) => {
+  //   if(rowData.length==0){
+  //     fetch('https://jsonplaceholder.typicode.com/comments?')
+  //     .then((res) => res.json())
+  //     .then(data=>setRowData(data))
+  //     }
+  // }, []);
 
-  const onGridReady = (params: GridReadyEvent) => {
+  // const onGridReady = (params: GridReadyEvent) => {
     // fetch('http://localhost:4000/olympic?') //https://www.ag-grid.com/example-assets/olympic-winners.json
     //   .then((res) => res.json())
     //   .then((data: any[]) => {
@@ -222,7 +229,7 @@ export const Groups = ({
     // params.api.setServerSideDatasource(datasource)
     // setRowData(datasource);
 
-  }
+  // }
   const classes = useStyles()
   const maxLength = 20
   const filesArray: any[] = []

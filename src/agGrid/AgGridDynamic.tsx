@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import 'ag-grid-community'
+import 'ag-grid-enterprise'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
@@ -198,11 +198,11 @@ export const DisplayDynamicHeader = ({
                   columnDefs={columnDefs}
                   defaultColDef={defaultColDef}
                   // rowModelType={'serverSide'}
-                  // sideBar={sideBar}
+                  sideBar={true}
                   // pagination={true}
                   // paginationPageSize={500}
                   // animateRows={true}
-                  // sideBar={true}
+                  // sideBar={'filters'}
                   // serverSideStoreType={storeType}
                   // enableRangeSelection={true}
                   rowData={onGridReady}
@@ -262,7 +262,7 @@ export const DisplayDynamicHeader = ({
                 columnDefs={columnDefs}
                 defaultColDef={defaultColDef}
                 //rowModelType={'serverSide'}
-                // sideBar={sideBar}
+                sideBar={true}
                 // pagination={true}
                 // paginationPageSize={500}
                 // animateRows={true}
