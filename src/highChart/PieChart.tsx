@@ -4,7 +4,8 @@ import HighchartsReact from 'highcharts-react-official';
 import Box from "@mui/material/Box";
 
 export const PieChart: React.FC = () => {
-
+ const colors = ['#5B8FF9', '#FF9D4D', '#EC5A5F', '#41D067', '#008F89'];
+ const innerSize = ['50%', '0']
   const chartOptions: any = {
     chart: {
       plotBackgroundColor: "",
@@ -35,9 +36,11 @@ export const PieChart: React.FC = () => {
           }
       }
   },
+  colors: colors,
   series: [{
       name: 'Brands',
       colorByPoint: true,
+      innerSize: innerSize[Math.floor(Math.random()*innerSize.length)],
       data: [{
           name: 'Chrome',
           y: 70.67,
@@ -68,7 +71,7 @@ export const PieChart: React.FC = () => {
           name: 'Other',
           y: 2.6
       }]
-  }]
+  }],
   };
 
   return (
