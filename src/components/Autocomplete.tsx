@@ -178,6 +178,7 @@ export const AutocompleteComponent = ({
         ? email
         : year,
     )
+    console.log('newFilterModel',newFilterModel)
   }, [])
 
   return (

@@ -237,7 +237,7 @@ export const DisplayDynamicHeader = ({
                   <Button variant="contained">Cancel</Button>
                 </Box>
               </Box>
-              <hr />
+              <hr style={{background:'#ddd', border:'none',height:'1px'}}/>
             </Box>
             <Box sx={{ width: '49%', height: '88%', border: '1px solid #ddd', display:'flex', justifyContent:'center' }}>
               <PieChart />
@@ -301,7 +301,7 @@ export const DisplayDynamicHeader = ({
                 <Button variant="contained">Cancel</Button>
               </Box>
             </Box>
-            <hr />
+            <hr style={{background:'#ddd', border:'none',height:'1px'}}/>
           </Box>
           <Box sx={{ height: '100%', border:'1px solid #ddd' }}>
             <BarChart />

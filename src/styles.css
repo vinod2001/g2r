@@ -42,3 +42,7 @@ html {
   overflow: hidden;
   padding-bottom:10px;
 }
+
+.ag-theme-alpine .ag-root-wrapper {
+  border-color: #dddddd !important;
+}

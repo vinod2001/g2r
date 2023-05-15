@@ -116,8 +116,9 @@ export const Groups = ({
   const [isKpi, setKpi] = useState(false)
   useEffect(() => {
     // console.log(layout.type);
-    let { urls, numbers } = checkDomain(0)
-    let url: string = 'https://jsonplaceholder.typicode.com/comments?' // urls + ''
+    // let { urls, numbers } = checkDomain(0)
+    let urls = 'https://jsonplaceholder.typicode.com/comments?';
+    let url: string = urls + ''
 
     if (newFilterModel.sport.length > 0)
       url =
@@ -141,12 +142,11 @@ export const Groups = ({
     fetch(url.replace(',', ''))
       .then((httpResponse) => httpResponse.json())
       .then((response) => {
-        // setNewParam(response);
-        if (newParam) {
-          newParam.successCallback(response)
-          newParam.api.setColumnDefs(filterHeader(response))
-        }
-        // gridRef.current!.api.setServerSideDatasource(response);
+        // if (newParam) {
+        //   newParam.successCallback(response)
+        //   newParam.api.setColumnDefs(filterHeader(response))
+        // }
+        setRowData(response);
       })
       .catch((error) => {
         console.error(error)
